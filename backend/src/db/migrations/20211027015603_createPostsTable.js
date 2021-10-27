@@ -14,7 +14,7 @@ exports.up = function(knex) {
           .inTable('topics')
           .onDelete('cascade');
         table.string('post_title');
-        table.text('content');
+        table.text('post_content');
         table.timestamps(true, true);
     })
   };

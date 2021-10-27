@@ -37,10 +37,23 @@ const update = (user_id, updatedUser) => {
         .then(rows => rows[0]);
 }
 
+const readUsersComments = (user_id) => {
+    return knex('comments as c')
+        .join('posts as p', 'c.post_id', 'p.post_id')
+        .select('*')
+        .where({ 'c.user_id': user_id })
+        .then(response => {
+            if (response.length) {
+                return response;
+            };
+        });
+} 
+
 module.exports = {
     list,
     read,
     readUsersPosts,
+    readUsersComments,
     create,
     update,
 }

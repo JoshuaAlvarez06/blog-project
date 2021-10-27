@@ -19,4 +19,9 @@ router
     .get(controller.read)
     .all(methodNotAllowed);
 
+router
+    .route('/:userId/comments')
+    .get(controller.read)
+    .all(methodNotAllowed);
+
 module.exports = router;
