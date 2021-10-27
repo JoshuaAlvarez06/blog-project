@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = ({ navClickHandler }) => {
 
     return (
         <div className='navbarContainer'>
-            <h1 className='logo'>Coders' Spot</h1>
+            <h1><Link to='/' className='logo'>Coder's Spot</Link></h1>
             <div className='menuItemsContainer'>
                 <i className="fas fa-bars bars" onClick={navClickHandler}></i>
                 <ul className='menuItems'>
