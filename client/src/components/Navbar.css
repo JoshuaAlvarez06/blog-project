@@ -1,0 +1,43 @@
+.navbarContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    background: #000;
+}
+
+.logo {
+    color: white;
+}
+
+.menuItems {
+    display: flex;
+    list-style: none;
+}
+
+.menuItem {
+    text-decoration: none;
+    margin-right: 25px;
+    color: #fff;
+}
+
+.menuItem:last-child {
+    margin-right: 0;
+}
+
+.bars {
+    display: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+    .menuItems {
+        display: none;
+    }
+
+    .bars {
+        display: block;
+    }
+}
