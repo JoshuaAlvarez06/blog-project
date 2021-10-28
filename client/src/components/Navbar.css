@@ -5,13 +5,14 @@
     padding: 0.5rem 2rem;
     background: #000;
     height: 80px;
+    color: #fff;
 }
 
 .logo {
     font-size: 2.2rem;
-    color: white;
     text-decoration: none;
     cursor: pointer;
+    color: inherit;
 }
 
 .menuItems {
@@ -22,11 +23,15 @@
 .menuItem {
     text-decoration: none;
     margin-right: 25px;
-    color: #fff;
 }
 
 .menuItem:last-child {
     margin-right: 0;
+}
+
+.menuItem a {
+    text-decoration: none; 
+    color: inherit;
 }
 
 .bars {
@@ -35,8 +40,13 @@
     cursor: pointer;
     font-size: 2rem;
     position: fixed;
-    top: 1.2rem;
-    right: 1.5rem;
+    top: 2.5rem;
+    right: 2rem;
+}
+
+.menuItems button {
+    font-size: 1rem;
+    padding: 0;
 }
 
 @media screen and (max-width: 768px) {

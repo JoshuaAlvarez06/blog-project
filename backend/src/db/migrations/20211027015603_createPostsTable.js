@@ -4,7 +4,7 @@ exports.up = function(knex) {
         table.integer('user_id');
         table
           .foreign('user_id')
-          .references('user_id')
+          .references('id')
           .inTable('users')
           .onDelete('cascade');
         table.integer('topic_id');

@@ -15,7 +15,7 @@ const Posts = () => {
     }, [])
     return (
         <div>
-            {posts.map(post => post.post_title)}
+            {posts.map(post => post.title)}
         </div>
     )
 }

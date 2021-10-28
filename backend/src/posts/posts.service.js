@@ -17,7 +17,7 @@ const read = (post_id) => {
 const readPostComments = (post_id) => {
     return knex('comments as c')
         .join('users as u', 'c.user_id', 'u.user_id')
-        .select('c.comment_id', 'c.comment_content', 'c.created_at','u.first_name', 'u.last_name', 'u.user_name')
+        .select('c.comment_id', 'c.comment_content', 'c.created_at','u.first_name', 'u.last_name', 'u.username')
         .where({ post_id })
         .then(response => {
             if (response.length) {

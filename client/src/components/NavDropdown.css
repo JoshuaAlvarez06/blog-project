@@ -14,8 +14,8 @@
 .icon {
     position: absolute;
     color: #fff;
-    top: 1.2rem;
-    right: 1.5rem;
+    top: 2.5rem;
+    right: 2rem;
     background: transparent;
     font-size: 2rem;
     cursor: pointer;
@@ -41,6 +41,16 @@
     color: #fff;
     cursor: pointer;
     transition: 0.2s ease-in-out;
+}
+
+.dropdownItem a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.dropdownItems button {
+    padding: 0;
+    font-size: 1.5rem;
 }
 
 /* FadeIn for Nav Menu */

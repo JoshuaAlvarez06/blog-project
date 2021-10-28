@@ -1,17 +1,30 @@
-import React from 'react';
-import './NavDropdown.css'
+import React from "react";
+import { Link } from "react-router-dom";
+import "./NavDropdown.css";
+import { useAuth0 } from '@auth0/auth0-react';
+import LogoutButton from "./LogoutButton";
+import LoginButton from "./LoginButton";
 
 const NavDropdown = ({ navClickHandler }) => {
-    return (
-        <div className="dropdownContainer" onClick={navClickHandler}>
-            <i className="fas fa-times icon" onClick={navClickHandler}></i>
-            <ul className="dropdownItems">
-                <li className="dropdownItem">Home</li>
-                <li className="dropdownItem">Topics</li>
-                <li className="dropdownItem">Posts</li>
-            </ul>
-        </div>
-    )
-}
+  const { isAuthenticated } = useAuth0();
 
-export default NavDropdown
+  return (
+    <div className="dropdownContainer" onClick={navClickHandler}>
+      <i className="fas fa-times icon" onClick={navClickHandler}></i>
+      <ul className="dropdownItems">
+        <li className="dropdownItem">
+          <Link to="/">Home</Link>
+        </li>
+        <li className="dropdownItem">
+          <Link to="/topics">Topics</Link>
+        </li>
+        <li className="dropdownItem">
+          <Link to="/posts">Posts</Link>
+        </li>
+        {isAuthenticated ? <LogoutButton /> : <LoginButton />}
+      </ul>
+    </div>
+  );
+};
+
+export default NavDropdown;

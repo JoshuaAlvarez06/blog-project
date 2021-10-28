@@ -1,0 +1,14 @@
+.loadingContainer {
+    width: 100vw;
+    height: 100vh;
+    background: #333;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loadingContainer h1 {
+    
+    text-align: center;
+}

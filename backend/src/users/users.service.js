@@ -30,6 +30,11 @@ const create = (newUser) => {
         .then(rows => rows[0]);
 }
 
+const userExists = (email) => {
+    return knex('users')
+        .where({ email })
+}
+
 const update = (user_id, updatedUser) => {
     return knex('users')
         .where({ user_id })
@@ -56,4 +61,5 @@ module.exports = {
     readUsersComments,
     create,
     update,
+    userExists,
 }
