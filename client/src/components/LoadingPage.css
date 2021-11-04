@@ -6,9 +6,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: fixed;
+    z-index: 1000;
 }
 
 .loadingContainer h1 {
-    
     text-align: center;
 }

@@ -1,32 +1,64 @@
-import React from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
-import JSONPretty from 'react-json-pretty';
-import axios from 'axios';
-import mainUrl from '../helpers/reqHelper';
+import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
+import mainUrl from "../helpers/reqHelper";
+import "./Profile.css";
 
 const Profile = () => {
-    const { user, isAuthenticated } = useAuth0();
-    
-    React.useEffect(() => {
-        if (user) {
-            axios.post(`${mainUrl}/users/create-user`, {data: {
-                nickname: user.nickname,  
-                first_name: user.given_name, 
-                last_name: user.family_name, 
-                email: user.email
-            }}).then(res => console.log("res", res))
-        };
-    }, [user]);
+  const { user, isAuthenticated } = useAuth0();
+  const [userId, setUserId] = React.useState(0);
+  const [posts, setPosts] = React.useState([]);
 
-    return (
-        isAuthenticated &&
-        <div>
-            <img src={user.picture} alt={user.name} />
-            <h2>{user.name}</h2>
-            <p>{user.email}</p>
-            <JSONPretty data={user} />
+  React.useEffect(() => {
+    if (user) {
+      axios
+        .get(`${mainUrl}/users/${user.email}`)
+        .then((response) => setUserId(response.data.data.id))
+        .then(() => {
+          if (userId >= 1) {
+            axios
+              .get(`${mainUrl}/users/${userId}/posts`)
+              .then((response) => setPosts(response.data.data));
+          }
+        });
+    }
+  }, [user, userId]);
+
+  return (
+    isAuthenticated && (
+      <div className="profileContainer">
+        <div className="profileSection">
+          <h1>Profile</h1>
+          <div className="userInfoSection">
+            <div className="topInfo">
+              <h2>{user.name}</h2>
+              <img src={user.picture} alt={user.nickname} />
+            </div>
+            <div className="info">
+              <p>Name:</p>
+              <p>
+                {user.given_name === undefined || user.family_name === undefined
+                  ? `Unknown`
+                  : `${user.given_name} ${user.family_name}`}
+              </p>
+            </div>
+            <div className="info">
+              <p>Username:</p>
+              <p>{user.nickname}</p>
+            </div>
+            <div className="info">
+              <p>Email:</p>
+              <p>{user.email}</p>
+            </div>
+            <div className="info">
+              <p>Posts:</p>
+              <p>{posts.length}</p>
+            </div>
+          </div>
         </div>
+      </div>
     )
+  );
 };
 
-export default Profile
+export default Profile;

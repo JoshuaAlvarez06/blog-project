@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./NavDropdown.css";
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0 } from "@auth0/auth0-react";
 import LogoutButton from "./LogoutButton";
 import LoginButton from "./LoginButton";
 
@@ -16,11 +16,13 @@ const NavDropdown = ({ navClickHandler }) => {
           <Link to="/">Home</Link>
         </li>
         <li className="dropdownItem">
-          <Link to="/topics">Topics</Link>
-        </li>
-        <li className="dropdownItem">
           <Link to="/posts">Posts</Link>
         </li>
+        {isAuthenticated && (
+          <li className="dropdownItem">
+            <Link to="/profile">Profile</Link>
+          </li>
+        )}
         {isAuthenticated ? <LogoutButton /> : <LoginButton />}
       </ul>
     </div>

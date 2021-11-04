@@ -49,8 +49,11 @@
 }
 
 .dropdownItems button {
-    padding: 0;
+    padding: 1.5rem 0;
     font-size: 1.5rem;
+    cursor: pointer;
+    color: #fff;
+    background: none;
 }
 
 /* FadeIn for Nav Menu */
