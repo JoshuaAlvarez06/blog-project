@@ -1,16 +1,18 @@
-import React from "react";
-import "./PostView.css";
-import { useParams } from "react-router-dom";
-import axios from "axios";
+import React from 'react';
+import './PostView.css';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const PostView = () => {
   const { postId } = useParams();
   const [post, setPost] = React.useState([]);
+  const [comments, setComments] = React.useState([]);
   React.useEffect(() => {
-    const { API_BASE_URL = "http://localhost:5001" } = process.env;
+    const { REACT_APP_API_BASE_URL = 'http://localhost:5001' } = process.env;
     axios
-      .get(`${API_BASE_URL}/posts/${postId}`)
+      .get(`${REACT_APP_API_BASE_URL}/posts/${postId}`)
       .then((res) => setPost(res.data.data));
+    axios.get(`${REACT_APP_API_BASE_URL}/${postId}/comments`).then(setComments);
   }, [postId]);
 
   return (
@@ -24,6 +26,12 @@ const PostView = () => {
           <div className="postContent">
             <p>{post.post_content}</p>
           </div>
+        </div>
+      </div>
+      <div className="commentsContainer">
+        <div className="comments">
+          <h2>Comments</h2>
+          <ul></ul>
         </div>
       </div>
     </div>

@@ -10,7 +10,6 @@ import Profile from "./components/Profile";
 import { useAuth0 } from "@auth0/auth0-react";
 import LoadingPage from "./components/LoadingPage";
 import axios from "axios";
-import mainUrl from "./helpers/reqHelper";
 import PostCreate from "./components/PostCreate";
 import PostView from "./components/PostView";
 
@@ -22,7 +21,8 @@ function App() {
 
   React.useEffect(() => {
     if (user) {
-      axios.post(`${mainUrl}/users`, {
+      const { REACT_APP_API_BASE_URL = "http://localhost:5001" } = process.env;
+      axios.post(`${REACT_APP_API_BASE_URL}/users`, {
         data: {
           username: user.nickname,
           first_name: user.given_name,

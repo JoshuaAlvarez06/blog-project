@@ -16,9 +16,9 @@ const PostCreate = () => {
   });
   React.useEffect(() => {
     if (user && isAuthenticated) {
-      const { API_BASE_URL = "http://localhost:5001" } = process.env;
+      const { REACT_APP_API_BASE_URL = "http://localhost:5001" } = process.env;
       axios
-        .get(`${API_BASE_URL}/users/${user.email}`)
+        .get(`${REACT_APP_API_BASE_URL}/users/${user.email}`)
         .then((response) => setUserId(response.data.data.id));
     }
   }, [user, isAuthenticated, userId]);
@@ -33,8 +33,8 @@ const PostCreate = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    const { API_BASE_URL = "http://localhost:5001" } = process.env;
-    axios.post(`${API_BASE_URL}/posts`, {
+    const { REACT_APP_API_BASE_URL = "http://localhost:5001" } = process.env;
+    axios.post(`${REACT_APP_API_BASE_URL}/posts`, {
       data: {
         ...postFormData,
         user_id: userId,
